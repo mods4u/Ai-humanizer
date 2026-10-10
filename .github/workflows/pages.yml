@@ -28,6 +28,17 @@ jobs:
           # pages:write permission — no repo-admin action needed.
           enablement: true
 
+      - name: Ensure Actions-based build type
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BUILD_TYPE=$(gh api "repos/${{ github.repository }}/pages" --jq '.build_type' 2>/dev/null || echo "")
+          echo "Current Pages build type: ${BUILD_TYPE:-unknown}"
+          if [ "$BUILD_TYPE" != "workflow" ]; then
+            echo "Switching Pages build type to 'workflow'..."
+            gh api -X PUT "repos/${{ github.repository }}/pages" -f build_type=workflow
+          fi
+
       - name: Assemble site
         run: |
           mkdir -p _site
