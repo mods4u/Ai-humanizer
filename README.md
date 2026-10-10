@@ -51,13 +51,13 @@ css/style.css            # styling
 js/humanizer.js          # the humanizer engine (rules + scoring)
 js/app.js                # UI wiring
 favicon.svg              # icon
-.github/workflows/pages.yml  # GitHub Pages deployment
+.nojekyll                # serve files as-is (no Jekyll processing)
 ```
 
 ## Deployment
 
-Hosted on GitHub Pages via GitHub Actions: every push to `main` builds and deploys
-automatically (see `.github/workflows/pages.yml`).
+Hosted on GitHub Pages, built directly from the `main` branch — every push to `main`
+is published automatically (`.nojekyll` keeps the build a plain static copy).
 
 ## Notes
 
