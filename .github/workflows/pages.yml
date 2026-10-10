@@ -23,6 +23,10 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          # Creates the Pages site on first run using this workflow's
+          # pages:write permission — no repo-admin action needed.
+          enablement: true
 
       - name: Assemble site
         run: |
